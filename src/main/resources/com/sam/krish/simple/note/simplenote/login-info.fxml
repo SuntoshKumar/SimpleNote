@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sam.krish.simple.note.simplenote.LoginController">
+
+    <ImageView fx:id="bgImg" fitHeight="0" fitWidth="0" pickOnBounds="true" StackPane.alignment="CENTER">
+        <Image url="@login_back.png" />
+    </ImageView>
+
+    <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" StackPane.alignment="CENTER">
+
+    <children>
+      <Label layoutX="603.0" layoutY="95.0" text="SignIn" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Baskerville" size="58.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="1.0" blue="0.7234042286872864" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color green="0.6666666865348816" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TextField fx:id="username" maxWidth="400" promptText="Username" style="-fx-border-color: #4FC3F7; -fx-background-radius: 16; -fx-border-radius: 16; -fx-padding: 8;" VBox.vgrow="NEVER">
+         <font>
+            <Font size="18.0" />
+         </font>
+            <VBox.margin>
+               <Insets bottom="20.0" top="60.0" />
+            </VBox.margin></TextField>
+      <PasswordField fx:id="password" layoutX="486.0" layoutY="319.0" maxWidth="400.0" promptText="Password" style="-fx-background-radius: 16; -fx-padding: 8; -fx-border-color: #4FC3F7; -fx-border-radius: 16;">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin></PasswordField>
+      <Button layoutX="808.0" layoutY="393.0" minWidth="156.0" mnemonicParsing="false" style="-fx-background-radius: 16; -fx-background-color: #4FC3F7;" text="SignIn" onAction="#onClickSignIn">
+         <font>
+            <Font name="Baskerville" size="17.0" />
+         </font>
+            <VBox.margin>
+               <Insets bottom="50.0" />
+            </VBox.margin></Button>
+      <Hyperlink layoutX="590.0" layoutY="492.0" text="Create account ?" onAction="#onClickCreateAccount" />
+      <Hyperlink layoutX="586.0" layoutY="526.0" text="Forget password ?" />
+   </children>
+    </VBox>
+</StackPane>
