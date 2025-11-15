@@ -11,6 +11,7 @@ module com.sam.krish.simple.note.simplenote {
     requires eu.hansolo.tilesfx;
     requires javafx.graphics;
     requires java.prefs;
+    requires java.sql;
 
     opens com.sam.krish.simple.note.simplenote to javafx.fxml;
     exports com.sam.krish.simple.note.simplenote;

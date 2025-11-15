@@ -1,7 +1,5 @@
 package com.sam.krish.simple.note.simplenote;
 
-import com.sam.krish.simple.note.simplenote.helper.AlertDialogHelper;
-import com.sam.krish.simple.note.simplenote.preference.UserPreference;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
