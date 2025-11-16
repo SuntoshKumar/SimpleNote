@@ -4,12 +4,12 @@ public class Note {
     private int id;
     private String title;
     private String text;
-    private String createdDate;
     private int fontSize;
     private int fontWeight;
     private int fontStyle;
     private int textColor;
     private int backgroundColor;
+    private String createdDate;
 
     public Note() {
     }
@@ -21,16 +21,16 @@ public class Note {
         this.createdDate = createdDate;
     }
 
-    public Note(int id, String title, String text, String createdDate, int fontSize, int fontWeight, int fontStyle, int textColor, int backgroundColor) {
+    public Note(int id, String title, String text, int fontSize, int fontWeight, int fontStyle, int textColor, int backgroundColor, String createdDate) {
         this.id = id;
         this.title = title;
         this.text = text;
-        this.createdDate = createdDate;
         this.fontSize = fontSize;
         this.fontWeight = fontWeight;
         this.fontStyle = fontStyle;
         this.textColor = textColor;
         this.backgroundColor = backgroundColor;
+        this.createdDate = createdDate;
     }
 
     public int getId() {

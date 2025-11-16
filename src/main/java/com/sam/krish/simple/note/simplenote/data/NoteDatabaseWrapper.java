@@ -15,5 +15,13 @@ public interface NoteDatabaseWrapper {
 
     void loadNote();
 
+    void updateTitle(int id, String title);
+    void updateText(int id, String text);
+    void updateFontSize(int id, int fontSize);
+    void updateFontWeight(int id, int fontWeight);
+    void updateFontStyle(int id, int fontStyle);
+    void updateTextColor(int id, int textColor);
+    void updateBackgroundColor(int id, int backgroundColor);
+    void updateCreatedDate(int id, String createdDate);
 
 }

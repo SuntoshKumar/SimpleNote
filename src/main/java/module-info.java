@@ -12,6 +12,7 @@ module com.sam.krish.simple.note.simplenote {
     requires javafx.graphics;
     requires java.prefs;
     requires java.sql;
+    requires com.h2database;
 
     opens com.sam.krish.simple.note.simplenote to javafx.fxml;
     exports com.sam.krish.simple.note.simplenote;
