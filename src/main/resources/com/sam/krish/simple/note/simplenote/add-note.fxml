@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sam.krish.simple.note.simplenote.AddNoteController">
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sam.krish.simple.note.simplenote.AddNoteController">
    <children>
-      <HBox alignment="CENTER" fillHeight="false" maxHeight="53.0" minHeight="40.0" prefHeight="53.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="topItem" alignment="CENTER" fillHeight="false" maxHeight="53.0" minHeight="40.0" prefHeight="53.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ChoiceBox fx:id="fontStyle" prefHeight="25.0" prefWidth="100.0">
                <HBox.margin>
@@ -20,11 +20,6 @@
                </HBox.margin>
             </ChoiceBox>
             <ChoiceBox fx:id="fontSize" prefHeight="25.0" prefWidth="100.0">
-               <HBox.margin>
-                  <Insets right="8.0" />
-               </HBox.margin>
-            </ChoiceBox>
-            <ChoiceBox fx:id="fontColor" prefHeight="25.0" prefWidth="100.0">
                <HBox.margin>
                   <Insets right="8.0" />
                </HBox.margin>

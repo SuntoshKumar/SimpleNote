@@ -10,13 +10,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,6 +28,9 @@ public class AddNoteController {
 
     @FXML
     private AnchorPane root;
+
+    @FXML
+    private HBox topItem;
     @FXML
     private Button add;
     @FXML
@@ -45,17 +47,21 @@ public class AddNoteController {
     @FXML
     private ChoiceBox<String> fontSize;
 
-    @FXML
-    private ChoiceBox<String> fontColor;
 
     private NoteDatabase database;
+
+    private int cIndex;
+
+    private Circle selectedCircle = null; // track currently selected circle
 
     @FXML
     public void initialize() throws SQLException {
 
-        database = new NoteDatabase();
-
         Note note = MainViewController.pNote;
+        String defaultColor = note != null ? NoteColor.fromIndex(note.getTextColor()).name() : NoteColor.DEFAULT.name();
+        topItem.getChildren().add(colorSelector(defaultColor));
+
+        database = new NoteDatabase();
 
         applyDefaultStyles(note);
 
@@ -120,27 +126,6 @@ public class AddNoteController {
                                 .map(Enum::name)
                                 .toList()
                 );
-        fontColor.setItems(fontColorList);
-        if (note != null) {
-            fontColor.getSelectionModel().select(NoteColor.fromIndex(note.getTextColor()).name());
-            BackgroundFill fill = new BackgroundFill(Color.web(NoteColor.fromIndex(note.getTextColor()).getBackgroundHex()), CornerRadii.EMPTY, new Insets(0));
-            root.setBackground(new Background(fill));
-
-        } else {
-            BackgroundFill fill = new BackgroundFill(Color.web(NoteColor.DEFAULT.getBackgroundHex()), CornerRadii.EMPTY, new Insets(0));
-            root.setBackground(new Background(fill));
-            fontColor.getSelectionModel().selectFirst();
-
-        }
-
-
-        fontColor.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
-
-            BackgroundFill fill = new BackgroundFill(Color.web(NoteColor.valueOf(newValue).getBackgroundHex()), CornerRadii.EMPTY, new Insets(0));
-            root.setBackground(new Background(fill));
-
-            applyStyles();
-        });
 
         if (note != null) {
             title.setText(note.getTitle());
@@ -161,7 +146,7 @@ public class AddNoteController {
         int noteStyle = NoteFontStyle.getIndexByName(fontStyle.getSelectionModel().getSelectedItem());
         int noteSize = NoteFontSize.getIndexByName(fontSize.getSelectionModel().getSelectedItem());
         int noteWeight = NoteFontWeight.getIndexByName(fontWeight.getSelectionModel().getSelectedItem());
-        int noteColor = NoteColor.getIndexByName(fontColor.getSelectionModel().getSelectedItem());
+        int noteColor = cIndex;
 
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss:SSS");
         String createdDate = format.format(new Date());
@@ -287,19 +272,24 @@ public class AddNoteController {
     }
 
     private void applyStyles() {
+        String styleName = fontStyle.getSelectionModel().getSelectedItem();
+        NoteFontStyle style = styleName != null ? NoteFontStyle.valueOf(styleName) : NoteFontStyle.NORMAL;
 
-        NoteFontStyle style = NoteFontStyle.valueOf(fontStyle.getSelectionModel().getSelectedItem());
-        NoteFontSize size = NoteFontSize.valueOf(fontSize.getSelectionModel().getSelectedItem());
-        NoteFontWeight weight = NoteFontWeight.valueOf(fontWeight.getSelectionModel().getSelectedItem());
-        NoteColor txtColor = NoteColor.valueOf(fontColor.getSelectionModel().getSelectedItem());
-        NoteColor bgColor = NoteColor.valueOf(fontColor.getSelectionModel().getSelectedItem());
+        String sizeName = fontSize.getSelectionModel().getSelectedItem();
+        NoteFontSize size = sizeName != null ? NoteFontSize.valueOf(sizeName) : NoteFontSize.NORMAL;
+
+        String weightName = fontWeight.getSelectionModel().getSelectedItem();
+        NoteFontWeight weight = weightName != null ? NoteFontWeight.valueOf(weightName) : NoteFontWeight.REGULAR;
+
+        NoteColor txtColor = NoteColor.fromIndex(cIndex);
+        NoteColor bgColor = NoteColor.fromIndex(cIndex);
 
         String css =
                 "-fx-font-style: " + (style == NoteFontStyle.ITALIC ? "italic;" : "normal;") +
-                "-fx-font-size: " + getFontSizeValue(size) + "px;" +
-                "-fx-font-weight: " + getFontWeightValue(weight) + ";" +
-                "-fx-text-fill: #" + txtColor.getTextHex() + ";" +
-                "-fx-control-inner-background: #" + bgColor.getBackgroundHex() + ";";
+                        "-fx-font-size: " + getFontSizeValue(size) + "px;" +
+                        "-fx-font-weight: " + getFontWeightValue(weight) + ";" +
+                        "-fx-text-fill: #" + txtColor.getTextHex() + ";" +
+                        "-fx-control-inner-background: #" + bgColor.getBackgroundHex() + ";";
 
         String css2 =
                 "-fx-font-style: " + (style == NoteFontStyle.ITALIC ? "italic;" : "normal;") +
@@ -310,5 +300,52 @@ public class AddNoteController {
 
         title.setStyle(css2);
         text.setStyle(css);
+    }
+
+
+
+    public Node colorSelector(String defaultColorName) {
+        HBox hBox = new HBox();
+        hBox.setPadding(new Insets(8));
+        hBox.setSpacing(8);
+
+        for (NoteColor color : NoteColor.values()) {
+            Circle circle = new Circle(12, Color.web(color.getTextHex()));
+            HBox.setMargin(circle, new Insets(4));
+
+            circle.setOnMouseClicked(event -> {
+                cIndex = color.getIndex();
+                selectCircle(circle, color);
+            });
+
+            hBox.getChildren().add(circle);
+
+            // If this circle matches the default color, select it
+            if (color.name().equalsIgnoreCase(defaultColorName)) {
+                selectCircle(circle, color);
+            }
+        }
+
+        return hBox;
+    }
+
+    private void selectCircle(Circle circle, NoteColor color) {
+        // Remove highlight from previous circle
+        if (selectedCircle != null) {
+            selectedCircle.setStroke(null);
+            selectedCircle.setStrokeWidth(0);
+        }
+
+        // Highlight current circle
+        circle.setStroke(Color.BLACK);
+        circle.setStrokeWidth(2);
+        selectedCircle = circle;
+
+        // Update ChoiceBox and TextArea background
+        BackgroundFill fill = new BackgroundFill(
+                Color.web(color.getBackgroundHex()), CornerRadii.EMPTY, Insets.EMPTY
+        );
+        root.setBackground(new Background(fill));
+        applyStyles();
     }
 }

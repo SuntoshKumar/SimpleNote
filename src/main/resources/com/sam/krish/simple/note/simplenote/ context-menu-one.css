@@ -1,0 +1,35 @@
+/* Main context menu box */
+.context-menu {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 8;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 12;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 10, 0.2, 0, 2);
+}
+
+/* Each menu item */
+.menu-item {
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* Hover effect */
+.menu-item:hover {
+    -fx-background-color: #eeeeee;
+    -fx-text-fill: #000000;
+}
+
+/* When item is focused */
+.menu-item:focused {
+    -fx-background-color: #2196F3; /* You can change to note color */
+    -fx-text-fill: white;
+}
+
+/* Separator line */
+.context-menu .separator {
+    -fx-padding: 4 0;
+}
