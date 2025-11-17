@@ -22,7 +22,7 @@
             <Font size="19.0"/>
         </font>
     </Button>
-    <MenuBar layoutY="1.0" prefHeight="36.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+    <MenuBar stylesheets="@menubar.css" layoutY="1.0" prefHeight="36.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
              AnchorPane.topAnchor="1.0">
         <menus>
             <Menu mnemonicParsing="false" text="File">
