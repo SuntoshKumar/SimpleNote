@@ -24,14 +24,14 @@ public class HelloApplication extends Application {
         if (preference.getRememberMe()){
             currentStage = stage;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
-            currentScene = new Scene(fxmlLoader.load(), 1000, 600);
+            currentScene = new Scene(fxmlLoader.load(), 800, 600);
             currentStage.setTitle("Simple Note");
             currentStage.setScene(currentScene);
             currentStage.show();
         }else  {
             currentStage = stage;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-info.fxml"));
-            currentScene = new Scene(fxmlLoader.load(), 1000, 600);
+            currentScene = new Scene(fxmlLoader.load(), 800, 600);
             currentStage.setTitle("Simple Note");
             currentStage.setScene(currentScene);
             currentStage.show();
