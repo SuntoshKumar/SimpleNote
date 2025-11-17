@@ -13,7 +13,9 @@ module com.sam.krish.simple.note.simplenote {
     requires java.prefs;
     requires java.sql;
     requires com.h2database;
+    requires com.google.gson;
 
     opens com.sam.krish.simple.note.simplenote to javafx.fxml;
     exports com.sam.krish.simple.note.simplenote;
+    opens com.sam.krish.simple.note.simplenote.data to com.google.gson;
 }

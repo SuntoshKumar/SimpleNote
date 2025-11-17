@@ -5,17 +5,52 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sam.krish.simple.note.simplenote.MainViewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sam.krish.simple.note.simplenote.MainViewController">
 
-    <ListView fx:id="listView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <padding>
-         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-      </padding></ListView>
+    <ListView fx:id="listView" layoutY="37.0" prefHeight="363.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
+        <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+        </padding>
+    </ListView>
 
 
-    <Button fx:id="add" style="-fx-background-radius: 50; -fx-background-color: #4FC3F7;" text="+" textFill="aliceblue" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0" onAction="#onAddNote">
-      <font>
-         <Font size="19.0" />
-      </font></Button>
+    <Button fx:id="add" onAction="#onAddNote" style="-fx-background-radius: 50; -fx-background-color: #4FC3F7;" text="+"
+            textFill="aliceblue" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0">
+        <font>
+            <Font size="19.0"/>
+        </font>
+    </Button>
+    <MenuBar layoutY="1.0" prefHeight="36.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+             AnchorPane.topAnchor="1.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem fx:id="backup" mnemonicParsing="false" text="Backup" onAction="#onBackup"/>
+                    <MenuItem fx:id="restore" mnemonicParsing="false" text="Restore" onAction="#onRestore"/>
+                    <MenuItem fx:id="close" mnemonicParsing="false" text="Close" onAction="#onClose"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <items>
+                    <MenuItem fx:id="selectAll" mnemonicParsing="false" text="Select all" onAction="#onSelectAll"/>
+                    <MenuItem fx:id="deselect" mnemonicParsing="false" text="Deselect" onAction="#onDeselect"/>
+                    <MenuItem fx:id="open" mnemonicParsing="false" text="Open" onAction="#onOpen"/>
+                    <MenuItem fx:id="copy" mnemonicParsing="false" text="Copy" onAction="#onCopy"/>
+                    <MenuItem fx:id="delete" mnemonicParsing="false" text="Delete" onAction="#onDelete"/>
+                    <MenuItem fx:id="deleteSelected" mnemonicParsing="false" text="Delete Selected" onAction="#onDeleteSelected"/>
+                    <MenuItem fx:id="deleteAll" mnemonicParsing="false" text="Delete All" onAction="#onDeleteAll"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem fx:id="logout" mnemonicParsing="false" text="Logout" onAction="#onLogout"/>
+
+                    <MenuItem mnemonicParsing="false" text="About" onAction="#onAbout"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
 
 </AnchorPane>

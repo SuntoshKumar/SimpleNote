@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.List;
 
 public class NoteDatabase implements NoteDatabaseWrapper {
 
@@ -107,6 +108,14 @@ public class NoteDatabase implements NoteDatabaseWrapper {
 
         }
     }
+
+
+    public void insertAll(List<Note> notes) throws SQLException {
+        for (Note n : notes) {
+            insert(n);   // use your existing insert() method
+        }
+    }
+
 
     @Override
     public ObservableList<Note> getAllNoteList() {

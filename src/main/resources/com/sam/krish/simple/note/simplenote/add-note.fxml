@@ -9,17 +9,13 @@
    <children>
       <HBox fx:id="topItem" alignment="CENTER" fillHeight="false" maxHeight="53.0" minHeight="40.0" prefHeight="53.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ChoiceBox fx:id="fontStyle" prefHeight="25.0" prefWidth="100.0">
+
+            <ChoiceBox fx:id="fontWeight" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E3F2FD; -fx-border-radius: 36; -fx-background-radius: 36;">
                <HBox.margin>
                   <Insets right="8.0" />
                </HBox.margin>
             </ChoiceBox>
-            <ChoiceBox fx:id="fontWeight" prefHeight="25.0" prefWidth="100.0">
-               <HBox.margin>
-                  <Insets right="8.0" />
-               </HBox.margin>
-            </ChoiceBox>
-            <ChoiceBox fx:id="fontSize" prefHeight="25.0" prefWidth="100.0">
+            <ChoiceBox fx:id="fontSize" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E3F2FD; -fx-background-radius: 36; -fx-border-radius: 36;">
                <HBox.margin>
                   <Insets right="8.0" />
                </HBox.margin>
@@ -28,7 +24,13 @@
          <padding>
             <Insets left="16.0" right="16.0" />
          </padding></HBox>
-      <TextArea fx:id="text" layoutY="78.0" prefHeight="292.0" prefWidth="600.0" promptText="Add your note...." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0">
+       <TextField fx:id="title" layoutY="48.0" prefHeight="48.0" prefWidth="600.0" promptText="Title here..." style="-fx-background-color: transparent; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-border-width: 0; -fx-border-color: transparent;" stylesheets="@title.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+           <font>
+               <Font size="20.0" />
+           </font>
+       </TextField>
+
+      <TextArea fx:id="text" layoutY="78.0" prefHeight="292.0" prefWidth="600.0" promptText="Add your note...." stylesheets="@text-area.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0">
          <font>
             <Font size="14.0" />
          </font></TextArea>
@@ -37,10 +39,5 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <TextArea fx:id="title" layoutY="48.0" prefHeight="24.0" prefWidth="600.0" promptText="Title here..." style="-fx-background-color: white; -fx-border-width: 0; -fx-border-color: white;" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </TextArea>
    </children>
 </AnchorPane>

@@ -1,0 +1,8 @@
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 16;   /* same padding as your TextArea */
+}

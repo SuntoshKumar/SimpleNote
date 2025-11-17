@@ -1,0 +1,74 @@
+/* ----------------------------
+   CHOICE BOX MAIN APPEARANCE
+   ---------------------------- */
+.choice-box {
+    -fx-background-color: #f4f4f4;
+    -fx-background-radius: 6;
+    -fx-padding: 2 2;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+}
+
+/* Hover state */
+
+/*
+.choice-box:hover {
+    -fx-background-color: #e8e8e8;
+    -fx-border-color: #bbbbbb;
+}
+*/
+
+/* Focused state */
+/*
+.choice-box:focused {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #3b82f6;
+    -fx-border-width: 1.2;
+}
+*/
+
+/* ----------------------------
+   LABEL INSIDE CHOICEBOX
+   ---------------------------- */
+.choice-box > .label {
+    -fx-text-fill: #333333;
+}
+
+/* ----------------------------
+   DROPDOWN LIST VIEW STYLING
+   ---------------------------- */
+.context-menu {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 16;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 16;
+    -fx-padding: 4;
+}
+
+/* Items inside the dropdown */
+.menu-item > .label {
+    -fx-padding: 6;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* Hover on items */
+
+/*
+.menu-item:hover > .label {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-background-radius: 4;
+}
+
+/* Selected item in popup */
+
+
+.menu-item:focused {
+    -fx-background-color: #81D4FA;
+    -fx-text-fill: black;
+    -fx-background-radius: 4;
+}

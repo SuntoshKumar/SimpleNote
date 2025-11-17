@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sam.krish.simple.note.simplenote.LoginController">
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/21.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sam.krish.simple.note.simplenote.LoginController">
 
     <ImageView fx:id="bgImg" fitHeight="0" fitWidth="0" pickOnBounds="true" StackPane.alignment="CENTER">
         <Image url="@login_back.png" />
@@ -51,14 +51,21 @@
             <VBox.margin>
                <Insets bottom="20.0" />
             </VBox.margin></PasswordField>
-      <Button layoutX="808.0" layoutY="393.0" minWidth="156.0" mnemonicParsing="false" style="-fx-background-radius: 16; -fx-background-color: #4FC3F7;" text="SignIn" onAction="#onClickSignIn">
+
+      <Button layoutX="808.0" layoutY="393.0" minWidth="156.0" mnemonicParsing="false" onAction="#onClickSignIn" style="-fx-background-radius: 16; -fx-background-color: #4FC3F7;" text="SignIn">
          <font>
             <Font name="Baskerville" size="17.0" />
          </font>
             <VBox.margin>
-               <Insets bottom="50.0" />
+               <Insets bottom="36.0" />
             </VBox.margin></Button>
-      <Hyperlink layoutX="590.0" layoutY="492.0" text="Create account ?" onAction="#onClickCreateAccount" />
+
+        <CheckBox fx:id="checkBox" mnemonicParsing="false" text="Remember me">
+            <VBox.margin>
+               <Insets bottom="36.0" />
+            </VBox.margin></CheckBox>
+
+      <Hyperlink layoutX="590.0" layoutY="492.0" onAction="#onClickCreateAccount" text="Create account ?" />
       <Hyperlink layoutX="586.0" layoutY="526.0" text="Forget password ?" />
    </children>
     </VBox>

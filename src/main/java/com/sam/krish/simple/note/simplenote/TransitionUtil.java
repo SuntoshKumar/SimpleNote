@@ -86,6 +86,14 @@ public class TransitionUtil {
     // --------------------------
     // Slide + Fade (smoothest)
     // --------------------------
+
+    /***
+     * Swap scene in stage with slide and fade transition
+     * @param resourceName ui resource file name with extension
+     * @param duration duration in millisecond for transition
+     * @param direction slide direction left,right,top, and bottom
+     * @throws IOException handle exception for loading ui file
+     */
     public static void slideFade(String resourceName, int duration, Direction direction) throws IOException {
         FXMLLoader loader = new FXMLLoader(TransitionUtil.class.getResource(resourceName));
         Parent newRoot = loader.load();

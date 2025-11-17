@@ -6,6 +6,7 @@ import com.sam.krish.simple.note.simplenote.preference.NoteColor;
 import com.sam.krish.simple.note.simplenote.preference.NoteFontSize;
 import com.sam.krish.simple.note.simplenote.preference.NoteFontStyle;
 import com.sam.krish.simple.note.simplenote.preference.NoteFontWeight;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,12 +35,10 @@ public class AddNoteController {
     @FXML
     private Button add;
     @FXML
-    private TextArea title;
+    private TextField title;
     @FXML
     private TextArea text;
 
-    @FXML
-    private ChoiceBox<String> fontStyle;
 
     @FXML
     private ChoiceBox<String> fontWeight;
@@ -54,6 +53,8 @@ public class AddNoteController {
 
     private Circle selectedCircle = null; // track currently selected circle
 
+    Note pNote = MainViewController.pNote;
+
     @FXML
     public void initialize() throws SQLException {
 
@@ -65,23 +66,9 @@ public class AddNoteController {
 
         applyDefaultStyles(note);
 
-        ObservableList<String> styleList =
-                FXCollections.observableArrayList(
-                        Arrays.stream(NoteFontStyle.values())
-                                .map(Enum::name)
-                                .toList()
-                );
-        fontStyle.setItems(styleList);
-        if (note != null) {
-            fontStyle.getSelectionModel().select(NoteFontStyle.fromIndex(note.getFontStyle()).name());
-
-        } else {
-            fontStyle.getSelectionModel().selectFirst();
+        if (pNote != null) {
+            cIndex = pNote.getTextColor();
         }
-
-        fontStyle.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
-            applyStyles();
-        });
 
         ObservableList<String> weightList =
                 FXCollections.observableArrayList(
@@ -89,6 +76,10 @@ public class AddNoteController {
                                 .map(Enum::name)
                                 .toList()
                 );
+
+        fontWeight.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource("choice-box.css")).toExternalForm()
+        );
         fontWeight.setItems(weightList);
         if (note != null) {
             fontWeight.getSelectionModel().select(NoteFontWeight.fromIndex(note.getFontWeight()).name());
@@ -101,6 +92,9 @@ public class AddNoteController {
         });
 
 
+        fontSize.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource("choice-box.css")).toExternalForm()
+        );
         ObservableList<String> sizeList =
                 FXCollections.observableArrayList(
                         Arrays.stream(NoteFontSize.values())
@@ -138,12 +132,16 @@ public class AddNoteController {
             }
         });
 
+
+        Platform.runLater(() -> {
+            title.requestFocus();
+            title.positionCaret(title.getText().length());
+        });
     }
 
     public void onDone() throws IOException {
         String noteTitle = title.getText();
         String noteText = text.getText();
-        int noteStyle = NoteFontStyle.getIndexByName(fontStyle.getSelectionModel().getSelectedItem());
         int noteSize = NoteFontSize.getIndexByName(fontSize.getSelectionModel().getSelectedItem());
         int noteWeight = NoteFontWeight.getIndexByName(fontWeight.getSelectionModel().getSelectedItem());
         int noteColor = cIndex;
@@ -158,6 +156,8 @@ public class AddNoteController {
 
         Note pNote = MainViewController.pNote;
 
+        System.out.println("PNoteeee " + pNote);
+
         if (pNote != null) {
             Note note = new Note(
                     pNote.getId(),
@@ -165,7 +165,7 @@ public class AddNoteController {
                     noteText,
                     noteSize,
                     noteWeight,
-                    noteStyle,
+                    0,
                     noteColor,
                     noteColor,
                     createdDate
@@ -178,7 +178,7 @@ public class AddNoteController {
                     noteText,
                     noteSize,
                     noteWeight,
-                    noteStyle,
+                    0,
                     noteColor,
                     noteColor,
                     createdDate
@@ -272,8 +272,6 @@ public class AddNoteController {
     }
 
     private void applyStyles() {
-        String styleName = fontStyle.getSelectionModel().getSelectedItem();
-        NoteFontStyle style = styleName != null ? NoteFontStyle.valueOf(styleName) : NoteFontStyle.NORMAL;
 
         String sizeName = fontSize.getSelectionModel().getSelectedItem();
         NoteFontSize size = sizeName != null ? NoteFontSize.valueOf(sizeName) : NoteFontSize.NORMAL;
@@ -285,14 +283,12 @@ public class AddNoteController {
         NoteColor bgColor = NoteColor.fromIndex(cIndex);
 
         String css =
-                "-fx-font-style: " + (style == NoteFontStyle.ITALIC ? "italic;" : "normal;") +
-                        "-fx-font-size: " + getFontSizeValue(size) + "px;" +
+                "-fx-font-size: " + getFontSizeValue(size) + "px;" +
                         "-fx-font-weight: " + getFontWeightValue(weight) + ";" +
                         "-fx-text-fill: #" + txtColor.getTextHex() + ";" +
                         "-fx-control-inner-background: #" + bgColor.getBackgroundHex() + ";";
 
         String css2 =
-                "-fx-font-style: " + (style == NoteFontStyle.ITALIC ? "italic;" : "normal;") +
                         "-fx-font-size: 22px;" +
                         "-fx-font-weight: bold;" +
                         "-fx-text-fill: #" + txtColor.getTextHex() + ";" +
@@ -301,7 +297,6 @@ public class AddNoteController {
         title.setStyle(css2);
         text.setStyle(css);
     }
-
 
 
     public Node colorSelector(String defaultColorName) {

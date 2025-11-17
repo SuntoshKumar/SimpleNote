@@ -10,6 +10,13 @@ public class UserPreference {
         preferences = Preferences.userNodeForPackage(UserPreference.class);
     }
 
+    public void setRememberMe(boolean rememberMe){
+        preferences.putBoolean(UserPref.REMEMBER_ME.name(), rememberMe);
+    }
+
+    public boolean getRememberMe(){
+        return preferences.getBoolean(UserPref.REMEMBER_ME.name(), false);
+    }
     public void setUsername(String username){
         preferences.put(UserPref.USERNAME.name(), username);
     }
