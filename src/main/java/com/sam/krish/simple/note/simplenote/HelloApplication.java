@@ -7,9 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
 
@@ -27,6 +29,7 @@ public class HelloApplication extends Application {
             currentScene = new Scene(fxmlLoader.load(), 800, 600);
             currentStage.setTitle("Simple Note");
             currentStage.setScene(currentScene);
+            currentStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("notes.png"))));
             currentStage.show();
         }else  {
             currentStage = stage;
@@ -36,10 +39,6 @@ public class HelloApplication extends Application {
             currentStage.setScene(currentScene);
             currentStage.show();
         }
-
-
-
-
 
     }
 }

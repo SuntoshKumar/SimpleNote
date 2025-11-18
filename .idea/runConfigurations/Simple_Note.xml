@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Simple Note" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.sam.krish.simple.note.simplenote.Launcher" />
+    <module name="SimpleNote" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
